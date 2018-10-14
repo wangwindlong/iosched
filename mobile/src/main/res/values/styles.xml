@@ -113,7 +113,8 @@
         <item name="textAllCaps">false</item>
     </style>
 
-    <style name="TextAppearance.IOSched.BottomNavigationView" parent="@style/TextAppearance.MaterialComponents.BottomNavigationView.Colored">
+    <!--parent="@style/TextAppearance.MaterialComponents.BottomNavigationView.Colored"-->
+    <style name="TextAppearance.IOSched.BottomNavigationView" parent="@style/Widget.MaterialComponents.BottomNavigationView.Colored" >
         <item name="android:fontFamily">@font/google_sans</item>
         <item name="android:textColor">@color/bottom_nav_item</item>
     </style>
@@ -175,6 +176,7 @@
 
     <style name="Widget.IOSched" parent="@android:style/Widget" />
 
+    <!--parent="@style/Widget.MaterialComponents.BottomNavigationView.Colored"-->
     <style name="Widget.IOSched.BottomNav" parent="@style/Widget.MaterialComponents.BottomNavigationView.Colored">
         <item name="itemIconTint">@color/bottom_nav_item</item>
         <item name="itemTextAppearanceActive">@style/TextAppearance.IOSched.BottomNavigationView.Active</item>

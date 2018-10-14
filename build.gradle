@@ -32,11 +32,11 @@ buildscript {
         targetSdkVersion = 28
 
         // App dependencies
-        androidGradlePluginVersion = '3.2.0-beta04'
-        appcompatVersion = '1.0.0-beta01'
-        browserVersion = '1.0.0-beta01'
-        constraintLayoutVersion = '1.1.2'
-        crashlyticsVersion = '2.9.4'
+        androidGradlePluginVersion = '3.2.0'
+        appcompatVersion = '1.0.0'
+        browserVersion = '1.0.0'
+        constraintLayoutVersion = '1.1.3'
+        crashlyticsVersion = '2.9.5'
         dagger = "2.16"
         dataBindingCompilerVersion = '3.0.1'
         espressoVersion = '3.1.0-alpha1'
@@ -47,22 +47,22 @@ buildscript {
         firebaseFirestoreVersion = '17.0.3'
         firebaseMessagingVersion = '17.1.0'
         firebaseUiVersion = "3.3.1"
-        flexboxVersion = "0.3.2"
+        flexboxVersion = "1.1.0"
         glideVersion = "4.6.1"
         googleMapUtilsVersion = "0.5"
         googlePlayServicesMapsVersion = '15.0.1'
         googleServicesVersion = "3.2.0"
-        gsonVersion = "2.8.1"
+        gsonVersion = "2.8.5"
         hamcrestVersion = '1.3'
         junitVersion = '4.12'
-        kotlinVersion = '1.2.50'
-        ktxVersion = "1.0.0-beta01"
+        kotlinVersion = '1.2.71'
+        ktxVersion = "1.0.0"
         leakCanaryVersion = "1.5.4"
-        leanbackVersion = '1.0.0-beta01'
-        legacySupportVersion = '1.0.0-alpha1'
-        lifecycleVersion = '2.0.0-beta01'
+        leanbackVersion = '1.0.0'
+        legacySupportVersion = '1.0.0'
+        lifecycleVersion = '2.0.0'
         lottieVersion = "2.5.1"
-        materialVersion = '1.0.0-beta01'
+        materialVersion = '1.0.0'
         mockitoVersion = "2.8.9"
         mockitoKotlinVersion = "1.5.0"
         okhttpVersion = "3.10.0"
@@ -72,7 +72,7 @@ buildscript {
         threetenabpVersion = "1.0.5"
         threetenbpVersion = "1.3.6"
         timberVersion = "4.7.0"
-        tvproviderVersion = '1.0.0-beta01'
+        tvproviderVersion = '1.0.0'
     }
 
     repositories {
@@ -86,7 +86,7 @@ buildscript {
         maven { url '../iosched-prebuilts/m2repository' }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$androidGradlePluginVersion"
+        classpath "com.android.tools.build:gradle:3.2.0"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "com.google.gms:google-services:$googleServicesVersion"
         classpath "io.fabric.tools:gradle:$fabricVersion"
