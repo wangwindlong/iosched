@@ -54,6 +54,13 @@ android {
             matchingFallbacks = ['debug']
         }
     }
+//    kapt {
+//        javacOptions {
+//            // Increase the max count of errors from annotation processors.
+//            // Default is 100.
+//            option("-Xmaxerrs", 500)
+//        }
+//    }
 
     flavorDimensions "servingType"
 
@@ -120,7 +127,7 @@ dependencies {
 
     // Glide
     implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
-    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
 
     // Fabric and Firebase
     implementation "com.firebaseui:firebase-ui-auth:$rootProject.firebaseUiVersion"
@@ -148,6 +155,7 @@ dependencies {
 
     // Solve conflicts with gson. DataBinding is using an old version.
     implementation "com.google.code.gson:gson:$gsonVersion"
+    kapt "com.android.databinding:compiler:$gradle_version"//这里的版本对应gradle的版本
 }
 
 apply plugin: 'com.google.gms.google-services'
