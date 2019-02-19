@@ -119,6 +119,7 @@ class MainActivity : DaggerAppCompatActivity() {
             currentFragment = fragment
             replace(FRAGMENT_ID, fragment)
         }
+//        supportFragmentManager.beginTransaction().replace(FRAGMENT_ID, fragment).commit()
     }
 
     override fun onBackPressed() {

@@ -93,7 +93,7 @@ class ScheduleFragment : DaggerFragment(), MainNavigationFragment {
     ): View? {
         scheduleViewModel = activityViewModelProvider(viewModelFactory)
         val binding = FragmentScheduleBinding.inflate(inflater, container, false).apply {
-            setLifecycleOwner(this@ScheduleFragment)
+            lifecycleOwner = this@ScheduleFragment
             viewModel = this@ScheduleFragment.scheduleViewModel
         }
 
