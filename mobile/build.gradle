@@ -19,6 +19,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'io.fabric'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -27,16 +28,12 @@ android {
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionName rootProject.versionName
+        versionCode rootProject.versionCodeMobile
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables.useSupportLibrary true
 
         manifestPlaceholders = [crashlyticsEnabled: true]
-        ndk {
-            // Specifies the ABI configurations of your native
-            // libraries Gradle should build and package with your APK.
-            abiFilters 'armeabi-v7a'//,'x86', 'x86_64', 'armeabi', 'arm64-v8a'
-        }
 
     }
     buildTypes {
@@ -59,28 +56,18 @@ android {
             matchingFallbacks = ['debug']
         }
     }
-//    kapt {
-//        javacOptions {
-//            // Increase the max count of errors from annotation processors.
-//            // Default is 100.
-//            option("-Xmaxerrs", 500)
-//        }
-//    }
-
-    flavorDimensions "servingType"
-
-    productFlavors {
-        installed {
-            dimension "servingType"
-            versionCode rootProject.versionCodeMobile
-        }
-        instant {
-            dimension "servingType"
-            versionCode rootProject.versionCodeInstant
-        }
-    }
     dataBinding {
         enabled true
+    }
+    kapt {
+        javacOptions {
+            // Increase the max count of errors from annotation processors.
+            // Default is 100.
+            option("-Xmaxerrs", 2000)
+        }
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 
     signingConfigs {
@@ -121,8 +108,17 @@ dependencies {
 
     // Architecture Components
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycleVersion"
+    implementation "androidx.fragment:fragment-ktx:$rootProject.fragmentVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$rootProject.lifecycleVersion"
     kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycleVersion"
-    testImplementation "androidx.arch.core:core-testing:$rootProject.lifecycleVersion"
+    implementation "androidx.room:room-ktx:$rootProject.roomVersion"
+    implementation "androidx.room:room-runtime:$rootProject.roomVersion"
+    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+    testImplementation "androidx.arch.core:core-testing:$rootProject.archCoreTestingVersion"
 
     // Dagger
     implementation "com.google.dagger:dagger-android:$rootProject.dagger"
@@ -149,18 +145,22 @@ dependencies {
     // Instrumentation tests
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.testExtVersion"
     androidTestImplementation "androidx.test:runner:$rootProject.runnerVersion"
     androidTestImplementation "androidx.test:rules:$rootProject.rulesVersion"
+    debugImplementation "androidx.fragment:fragment-testing:$rootProject.fragmentVersion"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$rootProject.dagger"
+    kaptAndroidTest "com.google.dagger:dagger-android-processor:$rootProject.dagger"
 
     // Local unit tests
     testImplementation "junit:junit:$rootProject.junitVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$rootProject.coroutinesVersion"
     testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
     testImplementation "com.nhaarman:mockito-kotlin:$rootProject.mockitoKotlinVersion"
     testImplementation "org.hamcrest:hamcrest-library:$rootProject.hamcrestVersion"
 
     // Solve conflicts with gson. DataBinding is using an old version.
     implementation "com.google.code.gson:gson:$gsonVersion"
-    kapt "com.android.databinding:compiler:$gradle_version"//这里的版本对应gradle的版本
 }
 
 apply plugin: 'com.google.gms.google-services'
